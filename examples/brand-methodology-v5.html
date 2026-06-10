@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>品牌设计方法论 · 从视觉走向认知 · MOON明月</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5D4E47;
+  background-color: #F4F1ED;
+  background-image: radial-gradient(rgba(93,78,71,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #E8C4B0; color: #3D342F; }
+
+h1, h2, h3, h4 { font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif; color: #5D4E47; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.2; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; }
+h4 { font-size: 1rem; font-weight: 700; }
+p { line-height: 1.8; margin-bottom: 1.2em; max-width: 65ch; }
+a { color: #bc4528; text-decoration: none; }
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: #bc4528;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+}
+
+/* ===== 1. Hero Center ===== */
+.hero-center {
+  text-align: center;
+  padding: clamp(100px, 18vh, 200px) clamp(24px, 4vw, 48px) clamp(80px, 12vh, 140px);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-center .section-label { display: inline-block; margin-bottom: 32px; }
+.hero-center h1 { margin-bottom: 28px; }
+.hero-center .subtitle {
+  color: #8A8178;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #8A8178;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  margin-top: 48px;
+  animation: bounce 2s infinite;
+}
+.scroll-hint::after {
+  content: '↓';
+  font-size: 1.4rem;
+  color: #bc4528;
+  font-weight: 300;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+.underline-hand {
+  position: relative;
+  display: inline-block;
+}
+.underline-hand::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: -6px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='12'%3E%3Cpath d='M2 8Q20 3 40 7T78 5' stroke='%23C65C3D' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
+}
+
+/* ===== 2. Hero Split ===== */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(40px, 5vw, 80px);
+  padding: clamp(80px, 10vh, 140px) clamp(24px, 4vw, 48px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-split h2 { margin-bottom: 20px; }
+.hero-split p { color: #8A8178; font-size: 1rem; margin-bottom: 16px; }
+.hero-split .highlight {
+  color: #5D4E47;
+  font-weight: 500;
+  font-size: 1.15rem;
+  border-left: 3px solid #bc4528;
+  padding-left: 20px;
+  margin: 24px 0;
+  line-height: 1.8;
+}
+.img-frame {
+  background: #EFEAE2;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(93, 78, 71, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+.img-frame .img-placeholder {
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(135deg, #E8C4B0 0%, #EFEAE2 50%, #F4F1ED 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 4rem;
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.2);
+}
+.img-frame .img-caption {
+  font-size: 0.75rem;
+  color: #8A8178;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ===== 3. Card Grid ===== */
+.section-values {
+  padding: clamp(80px, 10vh, 140px) 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.section-header {
+  margin-bottom: clamp(40px, 5vh, 64px);
+}
+.section-header h2 { margin-bottom: 10px; }
+.section-header > p { color: #8A8178; font-size: 0.95rem; margin-bottom: 0; }
+.card-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+.info-card {
+  background: #FAF7F2;
+  border-left: 3px solid #bc4528;
+  border-radius: 0 12px 12px 0;
+  padding: 32px 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(93, 78, 71, 0.08);
+}
+.info-card .card-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+  display: block;
+}
+.info-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #bc4528;
+  margin: 0 0 14px;
+}
+.info-card ul { list-style: none; padding: 0; margin: 0; }
+.info-card li {
+  font-size: 0.85rem;
+  color: #5D4E47;
+  line-height: 1.9;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.info-card li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #bc4528;
+  font-weight: 700;
+}
+
+/* ===== 4. Dark Panel ===== */
+.dark-panel {
+  background: #3D342F;
+  color: #F4F1ED;
+  padding: clamp(100px, 12vh, 160px) clamp(24px, 4vw, 48px);
+  margin: clamp(40px, 6vh, 80px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.dark-panel .deco-big {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: clamp(14rem, 35vw, 26rem);
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.04);
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+.dark-panel-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.dark-panel h2 {
+  color: #E8C4B0;
+  margin-bottom: 28px;
+}
+.dark-panel .formula {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 600;
+  color: #F4F1ED;
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+.dark-panel .formula span {
+  color: #bc4528;
+  font-weight: 700;
+}
+.dark-panel p {
+  color: #F4F1ED;
+  opacity: 0.8;
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ===== 5. Accordion ===== */
+.section-accordion {
+  padding: clamp(60px, 8vh, 100px) 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.accordion-group {
+  margin-top: 40px;
+}
+.accordion-item {
+  border-bottom: 1px solid rgba(93, 78, 71, 0.1);
+  overflow: hidden;
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #5D4E47;
+  transition: color 0.2s;
+  text-align: left;
+}
+.accordion-trigger:hover {
+  color: #bc4528;
+}
+.accordion-trigger .acc-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.accordion-trigger .acc-icon {
+  font-size: 1.4rem;
+}
+.accordion-icon {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #bc4528;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 0 0 38px;
+}
+.accordion-item.active .accordion-panel {
+  max-height: 400px;
+  padding: 0 0 28px 38px;
+}
+.accordion-panel p {
+  color: #8A8178;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin: 0;
+  max-width: 65ch;
+}
+
+/* ===== 6. Feature Cards ===== */
+.section-features {
+  padding: clamp(60px, 8vh, 100px) 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.feature-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.feature-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 40px 28px;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  border-top: 4px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(93, 78, 71, 0.1);
+  border-top-color: #bc4528;
+}
+.feature-card .fc-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.feature-card .fc-icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.feature-card h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 14px;
+}
+.feature-card p {
+  font-size: 0.88rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 220px;
+}
+
+/* ===== 7. Step Cards ===== */
+.section-stepcards {
+  padding: clamp(60px, 8vh, 100px) 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.step-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.step-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(93, 78, 71, 0.08);
+}
+.step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #bc4528;
+  opacity: 0.25;
+  transition: opacity 0.2s;
+}
+.step-card:hover::before {
+  opacity: 0.6;
+}
+.step-card-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.12);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 12px;
+}
+.step-card p {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== 8. Pull Quote ===== */
+.pull-quote {
+  text-align: center;
+  padding: clamp(80px, 10vh, 120px) clamp(24px, 4vw, 48px);
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+.pull-quote::before {
+  content: '"';
+  font-size: clamp(5rem, 12vw, 9rem);
+  color: rgba(188, 69, 40, 0.12);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+.pull-quote p {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  color: #5D4E47;
+  line-height: 1.9;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+/* ===== 9. Timeline — 单列紧凑布局（修复右侧空白） ===== */
+.section-timeline {
+  padding: clamp(60px, 8vh, 100px) 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.timeline-compact {
+  position: relative;
+  padding-left: 40px;
+  margin-top: 40px;
+}
+.timeline-compact::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(188, 69, 40, 0.2);
+}
+.tl-c-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+.tl-c-item:last-child {
+  margin-bottom: 0;
+}
+.tl-c-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #bc4528;
+  border: 3px solid #F4F1ED;
+  position: absolute;
+  left: -33px;
+  top: 6px;
+  z-index: 2;
+  box-shadow: 0 0 0 4px rgba(188, 69, 40, 0.1);
+}
+.tl-c-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 28px 24px;
+  border-left: 4px solid #bc4528;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.tl-c-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(93, 78, 71, 0.06);
+}
+.tl-c-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.tl-c-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  color: #5D4E47;
+}
+.tl-c-card p {
+  font-size: 0.92rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+.tl-c-detail {
+  font-size: 0.85rem;
+  color: #bc4528;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+/* ===== 10. Brand Panel ===== */
+.brand-panel {
+  background: #bc4528;
+  color: #F4F1ED;
+  padding: clamp(48px, 6vh, 80px) clamp(24px, 4vw, 48px);
+  border-radius: 16px;
+  max-width: 900px;
+  margin: 48px auto;
+  text-align: center;
+}
+.brand-panel h2 {
+  color: #F4F1ED;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  margin-bottom: 12px;
+}
+.brand-panel p {
+  color: rgba(244,241,237,0.85);
+  max-width: 500px;
+  margin: 0 auto 28px;
+}
+.btn-white {
+  display: inline-block;
+  padding: 14px 36px;
+  background: #F4F1ED;
+  color: #bc4528;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.btn-white:hover { transform: translateY(-2px); }
+
+/* ===== Brand Footer ===== */
+.brand-footer {
+  background: #bc4528;
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 400px;
+  margin: 48px auto;
+}
+.brand-footer .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.brand-footer .brand-name {
+  display: block;
+  color: #F4F1ED;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.brand-footer .brand-tags {
+  display: block;
+  color: rgba(244, 241, 237, 0.6);
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: #8A8178;
+  font-size: 0.8rem;
+}
+
+/* ===== Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Print ===== */
+@media print {
+  body { background: #fff !important; background-image: none !important; color: #000 !important; }
+  .dark-panel { background: #3D342F !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .brand-panel, .brand-footer { background: #bc4528 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .scroll-hint { display: none !important; }
+  a { text-decoration: none !important; color: #5D4E47 !important; }
+  .btn-white { background: #F4F1ED !important; color: #bc4528 !important; border: 2px solid #bc4528 !important; }
+  .img-frame, .img-placeholder { background: #EFEAE2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .accordion-panel { max-height: none !important; padding: 0 0 20px 38px !important; }
+  .timeline-compact::before { background: #bc4528 !important; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .card-grid-4 { grid-template-columns: 1fr; }
+  .feature-card-grid { grid-template-columns: 1fr; }
+  .step-card-grid { grid-template-columns: 1fr; }
+  .timeline-compact { padding-left: 32px; }
+  .timeline-compact::before { left: 10px; }
+  .tl-c-dot { left: -29px; }
+  .accordion-panel { padding-left: 0 !important; }
+  .accordion-item.active .accordion-panel { padding: 0 0 20px 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-hint { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- 1. Hero Center -->
+<header class="hero-center reveal">
+  <div class="section-label">品牌设计 · 思维升级</div>
+  <h1>从视觉设计<br>走向<span class="underline-hand">认知设计</span></h1>
+  <p class="subtitle">多数设计师职业发展的瓶颈，不是审美能力，而是思维层级。初级设计师关注画面，中级关注系统，高级关注认知。</p>
+  <div class="scroll-hint">向下滚动探索</div>
+</header>
+
+<!-- 2. Hero Split -->
+<section class="hero-split reveal" id="what">
+  <div>
+    <div class="section-label">第一章</div>
+    <h2>品牌是什么</h2>
+    <p>品牌不是Logo。品牌不是VI。品牌甚至不是产品。</p>
+    <p class="highlight">品牌是用户对一个组织、产品或个人形成的稳定认知。因此：品牌设计的本质，是认知设计。</p>
+    <p>设计师创造的从来不是品牌。设计师创造的是品牌被认知的条件。</p>
+  </div>
+  <div class="img-frame">
+    <div class="img-placeholder">◉</div>
+    <div class="img-caption">品牌 = 用户心智中的稳定认知</div>
+  </div>
+</section>
+
+<!-- 3. Card Grid -->
+<section class="section-values reveal" id="layers">
+  <div class="section-header">
+    <div class="section-label">核心框架</div>
+    <h2>品牌的四层结构</h2>
+    <p>从战略到体验，每一层都是下一层的基础。设计师的职责是将抽象战略翻译成可感知的信息。</p>
+  </div>
+  <div class="card-grid-4">
+    <div class="info-card">
+      <span class="card-icon">🎯</span>
+      <h4>战略层</h4>
+      <ul>
+        <li>我是谁？品牌定位</li>
+        <li>我服务谁？目标用户</li>
+        <li>我为什么不同？差异化</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">🧠</span>
+      <h4>认知层</h4>
+      <ul>
+        <li>用户如何理解你</li>
+        <li>只记住一个关键词</li>
+        <li>品牌竞争=认知竞争</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">📝</span>
+      <h4>表达层</h4>
+      <ul>
+        <li>语言系统</li>
+        <li>视觉系统</li>
+        <li>内容系统</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <span class="card-icon">✨</span>
+      <h4>体验层</h4>
+      <ul>
+        <li>传播塑造期待</li>
+        <li>体验形成信任</li>
+        <li>品牌最终是体验出来的</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Dark Panel -->
+<section class="dark-panel reveal">
+  <div class="deco-big">×</div>
+  <div class="dark-panel-content">
+    <h2>品牌设计的核心公式</h2>
+    <div class="formula">品牌价值 = <span>战略</span> × <span>产品</span> × <span>传播</span> × <span>体验</span></div>
+    <p>战略决定方向，产品决定基础，传播决定认知，体验决定信任。视觉负责放大这一切。品牌设计不是从视觉开始，而是从战略开始。</p>
+  </div>
+</section>
+
+<!-- 5. Accordion -->
+<section class="section-accordion reveal" id="logic">
+  <div class="section-header" style="text-align:center;">
+    <div class="section-label">底层逻辑</div>
+    <h2>品牌设计的四个底层原则</h2>
+    <p>点击展开，了解每个原则的核心要义</p>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-item active">
+      <button class="accordion-trigger">
+        <span class="acc-title"><span class="acc-icon">🔄</span> 一致性</span>
+        <span class="accordion-icon">−</span>
+      </button>
+      <div class="accordion-panel">
+        <p>品牌最大的资产不是创新，而是一致。长期重复同一个认知，长期强化同一个价值，长期保持同一种表达。最终形成品牌资产。用户不会因为一次惊艳的设计记住你，但会因为一百次一致的接触信任你。</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">
+        <span class="acc-title"><span class="acc-icon">🎭</span> 差异化</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-panel">
+        <p>品牌不是比别人更好，而是比别人不同。用户无法记住第二名，只能记住最鲜明的特征。设计师应该寻找：不是更美，而是更独特。找到你的认知空位，然后占据它。</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">
+        <span class="acc-title"><span class="acc-icon">🎯</span> 聚焦</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-panel">
+        <p>品牌成长的过程不是增加认知，而是减少认知。好的品牌越来越简单，坏的品牌越来越复杂。一个品牌最好只占据用户心智中的一个位置。Volvo = 安全，Nike = 运动精神，Apple = 创新与极简。</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger">
+        <span class="acc-title"><span class="acc-icon">💎</span> 资产化</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-panel">
+        <p>每一次设计都应该形成品牌资产。Logo、色彩、字体、图形、口号、吉祥物、产品形态——资产的意义是让用户无需阅读即可识别。好的品牌资产是时间的复利。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Feature Cards -->
+<section class="section-features reveal" id="mind">
+  <div class="section-header" style="text-align:center;">
+    <div class="section-label">思维升级</div>
+    <h2>品牌设计师的四个阶段</h2>
+    <p>从执行者到架构师的成长路径</p>
+  </div>
+  <div class="feature-card-grid">
+    <div class="feature-card">
+      <div class="fc-num">Stage 01</div>
+      <span class="fc-icon">👁️</span>
+      <h4>视觉思维</h4>
+      <p>关注排版、配色、风格。思考："如何更好看？"</p>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">Stage 02</div>
+      <span class="fc-icon">🧩</span>
+      <h4>系统思维</h4>
+      <p>关注品牌规范、场景延展、多端统一。思考："如何更统一？"</p>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">Stage 03</div>
+      <span class="fc-icon">📊</span>
+      <h4>商业思维</h4>
+      <p>关注用户、市场、竞争。思考："如何更有效？"</p>
+    </div>
+    <div class="feature-card">
+      <div class="fc-num">Stage 04</div>
+      <span class="fc-icon">🧠</span>
+      <h4>认知思维</h4>
+      <p>关注心智、记忆、信任。思考："用户最终会记住什么？"</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Step Cards -->
+<section class="section-stepcards reveal" id="steps">
+  <div class="section-header" style="text-align:center;">
+    <div class="section-label">工作框架</div>
+    <h2>品牌设计的六步法</h2>
+  </div>
+  <div class="step-card-grid">
+    <div class="step-card">
+      <div class="step-card-num">01</div>
+      <h4>理解商业</h4>
+      <p>品牌目标是什么？增长、转化、溢价还是信任？设计必须服务于商业目标，而不是为了好看。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-card-num">02</div>
+      <h4>理解用户</h4>
+      <p>用户是谁，相信什么，害怕什么，渴望什么。品牌是用户相信的东西，不是企业拥有的东西。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-card-num">03</div>
+      <h4>理解竞争</h4>
+      <p>行业共性是什么，惯例是什么，同质化在哪里。找到认知空位和表达机会。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-card-num">04</div>
+      <h4>寻找差异</h4>
+      <p>品牌的独特价值是什么？不是比别人更好，而是比别人不同。用户只能记住最鲜明的特征。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-card-num">05</div>
+      <h4>建立系统</h4>
+      <p>战略系统、语言系统、视觉系统、内容系统、体验系统。将抽象战略翻译成可感知的信息。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-card-num">06</div>
+      <h4>持续强化</h4>
+      <p>品牌建设不是设计项目，而是长期工程。品牌资产来自重复，而非频繁改变。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Pull Quote -->
+<section class="pull-quote reveal">
+  <p>AI正在提高设计执行效率，<br>但无法替代战略判断、用户洞察和认知构建。</p>
+</section>
+
+<!-- 9. Timeline — 单列紧凑布局（修复右侧空白） -->
+<section class="section-timeline reveal" id="path">
+  <div class="section-header" style="text-align:center;">
+    <div class="section-label">成长路径</div>
+    <h2>从Logo到认知</h2>
+    <p>品牌设计师持续成长的四个阶段</p>
+  </div>
+  <div class="timeline-compact">
+    <div class="tl-c-item">
+      <div class="tl-c-dot"></div>
+      <div class="tl-c-card">
+        <span class="tl-c-icon">🎨</span>
+        <h4>Logo</h4>
+        <p>视觉执行的起点。一个图形符号，解决识别问题。这是大多数设计师的起点，但只是品牌的冰山一角。</p>
+        <div class="tl-c-detail">解决「被看见」的问题</div>
+      </div>
+    </div>
+    <div class="tl-c-item">
+      <div class="tl-c-dot"></div>
+      <div class="tl-c-card">
+        <span class="tl-c-icon">📐</span>
+        <h4>VI</h4>
+        <p>视觉识别系统。规范色彩、字体、应用，解决统一问题。让品牌在不同场景下保持一致性。</p>
+        <div class="tl-c-detail">解决「被识别」的问题</div>
+      </div>
+    </div>
+    <div class="tl-c-item">
+      <div class="tl-c-dot"></div>
+      <div class="tl-c-card">
+        <span class="tl-c-icon">🏗️</span>
+        <h4>品牌</h4>
+        <p>战略与表达。定义定位、价值、语气，解决认知问题。从"看起来一样"到"被记住"。</p>
+        <div class="tl-c-detail">解决「被记住」的问题</div>
+      </div>
+    </div>
+    <div class="tl-c-item">
+      <div class="tl-c-dot"></div>
+      <div class="tl-c-card">
+        <span class="tl-c-icon">🤝</span>
+        <h4>认知</h4>
+        <p>心智与信任。长期重复形成稳定认知，解决信任问题。品牌最终不是设计出来的，而是体验出来的。</p>
+        <div class="tl-c-detail">解决「被信任」的问题</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Brand Panel -->
+<section class="brand-panel reveal">
+  <h2>品牌不是企业拥有的东西，而是用户相信的东西</h2>
+  <p>从理解战略开始，从关注认知结束。这是品牌设计师持续成长的路径。</p>
+  <a href="#" class="btn-white">开始实践 →</a>
+</section>
+
+<!-- Brand Footer -->
+<section class="reveal" style="padding-bottom: 40px;">
+  <div class="brand-footer">
+    <img class="avatar" src="avatar.jpg" alt="Dr. Moon" onerror="this.style.display='none'">
+    <div>
+      <span class="brand-name">Dr. Moon</span>
+      <span class="brand-tags">品牌设计 · 认知构建 · 知识分享</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">MOON明月 · 用设计传递知识</footer>
+
+<script>
+document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.accordion-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.accordion-icon').textContent = '+';
+    });
+    if (!isActive) {
+      item.classList.add('active');
+      trigger.querySelector('.accordion-icon').textContent = '−';
+    }
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

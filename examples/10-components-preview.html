@@ -1,0 +1,939 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10个新增组件预览 · MOON明月</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5D4E47;
+  background-color: #F4F1ED;
+  background-image: radial-gradient(rgba(93,78,71,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  padding: 60px 24px;
+}
+.page-title {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: #5D4E47;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.page-subtitle {
+  text-align: center;
+  color: #8A8178;
+  font-size: 0.95rem;
+  margin-bottom: 60px;
+}
+.component-section {
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+.component-label {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(188,69,40,0.15);
+}
+.component-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 200;
+  color: rgba(188,69,40,0.2);
+  line-height: 1;
+}
+.component-name {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5D4E47;
+}
+.component-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  margin-left: auto;
+  font-weight: 400;
+}
+
+/* ========== 1. 杂志裁切卡片 ========== */
+.magazine-card {
+  background: #FAF7F2;
+  border-radius: 0 16px 16px 0;
+  padding: 40px 36px 36px 40px;
+  max-width: 520px;
+  position: relative;
+  overflow: hidden;
+  border-left: 4px solid #bc4528;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.magazine-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(93, 78, 71, 0.08);
+}
+.magazine-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: rgba(188, 69, 40, 0.06);
+  border-radius: 50%;
+}
+.mag-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.mag-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #5D4E47;
+  line-height: 1.4;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+.mag-excerpt {
+  font-size: 0.95rem;
+  color: #8A8178;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.mag-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.75rem;
+  color: #8A8178;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  position: relative;
+  z-index: 1;
+}
+.mag-date {
+  color: #bc4528;
+  font-weight: 600;
+}
+
+/* ========== 2. 产品展示卡 ========== */
+.product-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  overflow: hidden;
+  max-width: 320px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(93, 78, 71, 0.06);
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(93, 78, 71, 0.1);
+}
+.product-img {
+  background: #EFEAE2;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-placeholder {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+.product-body {
+  padding: 24px;
+}
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.product-header h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin: 0;
+}
+.product-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #F4F1ED;
+  background: #bc4528;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.product-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-price {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #bc4528;
+}
+.product-cta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #bc4528;
+  text-decoration: none;
+}
+
+/* ========== 3. 用户评价卡 ========== */
+.testimonial-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 36px 32px;
+  max-width: 400px;
+  position: relative;
+  border: 1px solid rgba(93, 78, 71, 0.04);
+  transition: transform 0.2s;
+}
+.testimonial-card:hover {
+  transform: translateY(-3px);
+}
+.testimonial-quote {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: rgba(188, 69, 40, 0.15);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.testimonial-text {
+  font-size: 1rem;
+  color: #5D4E47;
+  line-height: 1.9;
+  margin-bottom: 24px;
+  font-style: normal;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #bc4528;
+  color: #F4F1ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+}
+.testimonial-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5D4E47;
+}
+.testimonial-role {
+  font-size: 0.75rem;
+  color: #8A8178;
+}
+
+/* ========== 4. 工具资源列表 ========== */
+.resource-list {
+  max-width: 700px;
+}
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #FAF7F2;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: background 0.2s, transform 0.2s;
+  border: 1px solid rgba(93, 78, 71, 0.03);
+}
+.resource-item:hover {
+  background: #EFEAE2;
+  transform: translateX(4px);
+}
+.resource-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.25);
+  line-height: 1;
+  min-width: 36px;
+  text-align: center;
+}
+.resource-body {
+  flex: 1;
+}
+.resource-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin: 0 0 4px;
+}
+.resource-body p {
+  font-size: 0.85rem;
+  color: #8A8178;
+  margin: 0;
+  line-height: 1.5;
+}
+.resource-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 3px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ========== 5. 进度步骤条 ========== */
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 0;
+}
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+.progress-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #EFEAE2;
+  color: #8A8178;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 2px solid #EFEAE2;
+}
+.progress-step.completed .progress-dot {
+  background: #bc4528;
+  color: #F4F1ED;
+  border-color: #bc4528;
+  font-size: 0.9rem;
+}
+.progress-step.active .progress-dot {
+  background: #F4F1ED;
+  color: #bc4528;
+  border-color: #bc4528;
+  box-shadow: 0 0 0 4px rgba(188, 69, 40, 0.1);
+}
+.progress-label {
+  font-size: 0.75rem;
+  color: #8A8178;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.progress-step.active .progress-label {
+  color: #bc4528;
+  font-weight: 600;
+}
+.progress-line {
+  width: 60px;
+  height: 2px;
+  background: #EFEAE2;
+  margin: 0 4px;
+  position: relative;
+  top: -14px;
+}
+.progress-line.completed {
+  background: #bc4528;
+}
+
+/* ========== 6. 通知公告条 ========== */
+.announcement-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(188, 69, 40, 0.06);
+  border-left: 3px solid #bc4528;
+  border-radius: 0 10px 10px 0;
+  padding: 14px 20px;
+  max-width: 700px;
+  font-size: 0.9rem;
+}
+.ann-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.ann-text {
+  color: #5D4E47;
+  line-height: 1.5;
+  flex: 1;
+}
+.ann-link {
+  color: #bc4528;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ========== 7. 折叠列表 ========== */
+.expandable-list {
+  max-width: 700px;
+}
+.expandable-item {
+  background: #FAF7F2;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(93, 78, 71, 0.04);
+}
+.expandable-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #5D4E47;
+  font-size: 0.95rem;
+  list-style: none;
+}
+.expandable-summary::-webkit-details-marker {
+  display: none;
+}
+.expandable-summary::after {
+  content: '+';
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #bc4528;
+  margin-left: auto;
+}
+.expandable-item[open] .expandable-summary::after {
+  content: '−';
+}
+.ex-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.expandable-body {
+  padding: 0 22px 20px 48px;
+}
+.expandable-body p {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ========== 8. 图文列表卡片 ========== */
+.blog-list {
+  max-width: 800px;
+}
+.blog-card {
+  display: flex;
+  gap: 24px;
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(93, 78, 71, 0.03);
+}
+.blog-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(93, 78, 71, 0.06);
+}
+.blog-thumb {
+  width: 120px;
+  height: 90px;
+  background: #EFEAE2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.blog-thumb-placeholder {
+  font-size: 2rem;
+  opacity: 0.4;
+}
+.blog-content {
+  flex: 1;
+}
+.blog-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+.blog-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.blog-date {
+  font-size: 0.75rem;
+  color: #8A8178;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+}
+.blog-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.blog-excerpt {
+  font-size: 0.85rem;
+  color: #8A8178;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========== 9. 徽章成就展示 ========== */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 10px;
+  transition: transform 0.2s;
+}
+.badge-item:hover {
+  transform: translateY(-4px);
+}
+.badge-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FAF7F2;
+  border: 2px solid rgba(188, 69, 40, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  transition: all 0.25s;
+}
+.badge-item:hover .badge-circle {
+  background: #bc4528;
+  border-color: #bc4528;
+  box-shadow: 0 6px 16px rgba(188, 69, 40, 0.2);
+}
+.badge-name {
+  font-size: 0.75rem;
+  color: #8A8178;
+  font-weight: 500;
+  text-align: center;
+  transition: color 0.2s;
+}
+.badge-item:hover .badge-name {
+  color: #bc4528;
+  font-weight: 600;
+}
+
+/* ========== 10. 价格套餐卡片 ========== */
+.pricing-card {
+  background: #FAF7F2;
+  border-radius: 16px;
+  padding: 40px 32px;
+  max-width: 320px;
+  text-align: center;
+  border: 1px solid rgba(93, 78, 71, 0.04);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(93, 78, 71, 0.1);
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #bc4528;
+  opacity: 0.3;
+  transition: opacity 0.25s;
+}
+.pricing-card:hover::before {
+  opacity: 1;
+}
+.pricing-header {
+  margin-bottom: 28px;
+}
+.pricing-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 12px;
+}
+.pricing-price {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  color: #bc4528;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.pricing-currency {
+  font-size: 1.2rem;
+  font-weight: 600;
+  vertical-align: top;
+}
+.pricing-num {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+.pricing-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  margin: 0;
+}
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  text-align: left;
+}
+.pricing-features li {
+  font-size: 0.9rem;
+  color: #5D4E47;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(93, 78, 71, 0.06);
+  padding-left: 24px;
+  position: relative;
+}
+.pricing-features li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #bc4528;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.pricing-cta {
+  display: block;
+  padding: 14px 0;
+  background: #bc4528;
+  color: #F4F1ED;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.pricing-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(188, 69, 40, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badge-grid { grid-template-columns: repeat(3, 1fr); }
+  .blog-card { flex-direction: column; }
+  .blog-thumb { width: 100%; height: 160px; }
+  .progress-steps { flex-wrap: wrap; gap: 16px; }
+  .progress-line { display: none; }
+}
+</style>
+</head>
+<body>
+
+<h1 class="page-title">10个新增组件预览</h1>
+<p class="page-subtitle">MOON明月 Design System · 陶土橙 + 宣纸白 + 暖棕</p>
+
+<!-- ====== 1. 杂志裁切卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">01</span>
+    <span class="component-name">杂志裁切卡片</span>
+    <span class="component-desc">重点文章/专题推荐</span>
+  </div>
+  <div class="magazine-card">
+    <div class="mag-tag">深度阅读</div>
+    <div class="mag-title">从视觉设计走向认知设计</div>
+    <div class="mag-excerpt">多数设计师的瓶颈不是审美能力，而是思维层级。品牌设计本质上是一门关于认知构建的学科。</div>
+    <div class="mag-meta">
+      <span class="mag-date">2026.06</span>
+      <span>8 min read</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 2. 产品展示卡 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">02</span>
+    <span class="component-name">产品展示卡</span>
+    <span class="component-desc">课程/工具/服务展示</span>
+  </div>
+  <div class="product-card">
+    <div class="product-img">
+      <div class="product-placeholder">📦</div>
+    </div>
+    <div class="product-body">
+      <div class="product-header">
+        <h4>品牌设计系统课</h4>
+        <span class="product-badge">热门</span>
+      </div>
+      <p class="product-desc">从战略到视觉，一套完整的方法论。适合想升级思维的设计师。</p>
+      <div class="product-footer">
+        <span class="product-price">¥299</span>
+        <a href="#" class="product-cta">了解详情 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 3. 用户评价卡 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">03</span>
+    <span class="component-name">用户评价卡</span>
+    <span class="component-desc">学员反馈/客户评价</span>
+  </div>
+  <div class="testimonial-card">
+    <div class="testimonial-quote">"</div>
+    <p class="testimonial-text">这套方法论帮我跳出了"只做好看"的陷阱，开始从商业和认知角度思考设计。</p>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar">L</div>
+      <div>
+        <div class="testimonial-name">林小雅</div>
+        <div class="testimonial-role">UI 设计师 · 上海</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 4. 工具资源列表 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">04</span>
+    <span class="component-name">工具资源列表</span>
+    <span class="component-desc">书单/工具清单</span>
+  </div>
+  <div class="resource-list">
+    <div class="resource-item">
+      <span class="resource-num">01</span>
+      <div class="resource-body">
+        <h4>《设计心理学》</h4>
+        <p>唐纳德·诺曼 · 理解用户行为的基础读物</p>
+      </div>
+      <span class="resource-tag">必读</span>
+    </div>
+    <div class="resource-item">
+      <span class="resource-num">02</span>
+      <div class="resource-body">
+        <h4>《定位》</h4>
+        <p>里斯 & 特劳特 · 品牌认知战略的经典</p>
+      </div>
+      <span class="resource-tag">战略</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 5. 进度步骤条 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">05</span>
+    <span class="component-name">进度步骤条</span>
+    <span class="component-desc">教程进度/完成状态</span>
+  </div>
+  <div class="progress-steps">
+    <div class="progress-step completed">
+      <div class="progress-dot">✓</div>
+      <div class="progress-label">理解商业</div>
+    </div>
+    <div class="progress-line completed"></div>
+    <div class="progress-step completed">
+      <div class="progress-dot">✓</div>
+      <div class="progress-label">理解用户</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step active">
+      <div class="progress-dot">03</div>
+      <div class="progress-label">寻找差异</div>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step">
+      <div class="progress-dot">04</div>
+      <div class="progress-label">建立系统</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 6. 通知公告条 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">06</span>
+    <span class="component-name">通知公告条</span>
+    <span class="component-desc">重要更新/限时活动</span>
+  </div>
+  <div class="announcement-bar">
+    <span class="ann-icon">📢</span>
+    <span class="ann-text">新课上线：《品牌设计系统课》早鸟价开放中，限时7天</span>
+    <a href="#" class="ann-link">查看详情 →</a>
+  </div>
+</div>
+
+<!-- ====== 7. 折叠列表 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">07</span>
+    <span class="component-name">折叠列表</span>
+    <span class="component-desc">FAQ/常见问题</span>
+  </div>
+  <div class="expandable-list">
+    <details class="expandable-item" open>
+      <summary class="expandable-summary">
+        <span class="ex-icon">❓</span>
+        <span>品牌设计和VI设计有什么区别？</span>
+      </summary>
+      <div class="expandable-body">
+        <p>VI是视觉识别系统，解决"看起来统一"的问题。品牌设计是更完整的系统，包含战略、语言、视觉、内容和体验，解决"被记住和信任"的问题。</p>
+      </div>
+    </details>
+    <details class="expandable-item">
+      <summary class="expandable-summary">
+        <span class="ex-icon">❓</span>
+        <span>个人品牌也需要设计系统吗？</span>
+      </summary>
+      <div class="expandable-body">
+        <p>需要。个人品牌的本质和企业品牌一样：建立稳定认知。一套简单的规范（颜色+字体+语气）就能让你的所有输出保持一致。</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- ====== 8. 图文列表卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">08</span>
+    <span class="component-name">图文列表卡片</span>
+    <span class="component-desc">博客文章列表</span>
+  </div>
+  <div class="blog-list">
+    <article class="blog-card">
+      <div class="blog-thumb">
+        <div class="blog-thumb-placeholder">📝</div>
+      </div>
+      <div class="blog-content">
+        <div class="blog-meta">
+          <span class="blog-tag">品牌思维</span>
+          <span class="blog-date">2026.05.12</span>
+        </div>
+        <h4 class="blog-title">为什么你的设计很好看，但用户记不住？</h4>
+        <p class="blog-excerpt">好看是必要条件，但不是充分条件。用户记住的不是美，而是差异。</p>
+      </div>
+    </article>
+  </div>
+</div>
+
+<!-- ====== 9. 徽章成就展示 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">09</span>
+    <span class="component-name">徽章成就展示</span>
+    <span class="component-desc">技能标签/能力矩阵</span>
+  </div>
+  <div class="badge-grid">
+    <div class="badge-item">
+      <div class="badge-circle">🎨</div>
+      <div class="badge-name">视觉设计</div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-circle">🧠</div>
+      <div class="badge-name">认知构建</div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-circle">📊</div>
+      <div class="badge-name">商业分析</div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-circle">✍️</div>
+      <div class="badge-name">内容策略</div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-circle">🤝</div>
+      <div class="badge-name">用户研究</div>
+    </div>
+    <div class="badge-item">
+      <div class="badge-circle">⚡</div>
+      <div class="badge-name">AI效率</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 10. 价格套餐卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">10</span>
+    <span class="component-name">价格套餐卡片</span>
+    <span class="component-desc">课程定价/会员等级</span>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-header">
+      <div class="pricing-name">系统课</div>
+      <div class="pricing-price">
+        <span class="pricing-currency">¥</span>
+        <span class="pricing-num">299</span>
+      </div>
+      <p class="pricing-desc">适合想建立完整品牌思维的设计师</p>
+    </div>
+    <ul class="pricing-features">
+      <li>12节视频课</li>
+      <li>配套练习册</li>
+      <li>品牌规范模板</li>
+      <li>社群答疑</li>
+    </ul>
+    <a href="#" class="pricing-cta">立即报名</a>
+  </div>
+</div>
+
+</body>
+</html>

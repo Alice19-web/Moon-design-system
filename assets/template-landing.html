@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOON明月 · 活动</title>
+<style>
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5D4E47;
+  background-color: #F4F1ED;
+  background-image: radial-gradient(rgba(93,78,71,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: #E8C4B0; color: #3D342F; }
+
+/* ========== Typography ========== */
+h1, h2, h3 { font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif; color: #5D4E47; }
+h1 { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.15; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; }
+p { line-height: 1.8; margin-bottom: 1.2em; max-width: 60ch; }
+a { color: #bc4528; text-decoration: none; }
+
+/* ========== L02 Hero Center — 极简冲击 ========== */
+.hero-landing {
+  text-align: center;
+  padding: clamp(100px, 18vh, 200px) clamp(24px, 4vw, 48px);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-landing .label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #bc4528;
+  padding: 6px 16px;
+  border: 1.5px solid rgba(188,69,40,0.25);
+  border-radius: 20px;
+  margin-bottom: 32px;
+}
+.hero-landing h1 { margin-bottom: 24px; color: #3D342F; }
+.hero-landing .subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: #8A8178;
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* ========== Big Decorative Number — 视觉惊喜 ⚡ ========== */
+.deco-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: clamp(8rem, 20vw, 14rem);
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.06);
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-landing > * { position: relative; z-index: 1; }
+
+/* ========== CTA ========== */
+.cta-landing {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #bc4528;
+  color: #F4F1ED;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-landing:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(188, 69, 40, 0.3);
+}
+
+/* ========== L06 Dark Panel — 打破节奏 ========== */
+.dark-panel-landing {
+  background: #3D342F;
+  color: #F4F1ED;
+  padding: clamp(80px, 10vh, 140px) clamp(24px, 4vw, 48px);
+  margin: 0;
+  text-align: center;
+}
+.dark-panel-landing h2 {
+  color: #E8C4B0;
+  margin-bottom: 20px;
+}
+.dark-panel-landing p {
+  color: #F4F1ED;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* ========== L04 Card Grid — 信息概览 ========== */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 32px);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(80px, 10vh, 120px) 24px;
+}
+.value-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(93, 78, 71, 0.08);
+}
+.value-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+.value-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #5D4E47;
+}
+.value-card p {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* ========== L10 Brand Panel — 结尾收束 ========== */
+.brand-panel-landing {
+  background: #bc4528;
+  color: #F4F1ED;
+  padding: clamp(60px, 8vh, 100px) clamp(24px, 4vw, 48px);
+  border-radius: 0;
+  text-align: center;
+}
+.brand-panel-landing h2 {
+  color: #F4F1ED;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  margin-bottom: 16px;
+}
+.brand-panel-landing p {
+  color: rgba(244,241,237,0.85);
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+.btn-white {
+  display: inline-block;
+  padding: 14px 36px;
+  background: #F4F1ED;
+  color: #bc4528;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.btn-white:hover { transform: translateY(-2px); }
+
+/* ========== Brand Footer ========== */
+.brand-footer-landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 24px;
+}
+.brand-footer-landing .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(188,69,40,0.2);
+}
+.brand-footer-landing .name {
+  font-weight: 600;
+  color: #5D4E47;
+  font-size: 0.95rem;
+}
+.brand-footer-landing .sub {
+  font-size: 0.8rem;
+  color: #8A8178;
+}
+
+/* ========== Underline Hand ========== */
+.underline-hand {
+  position: relative;
+  display: inline-block;
+}
+.underline-hand::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: -6px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='12'%3E%3Cpath d='M2 8Q20 3 40 7T78 5' stroke='%23C65C3D' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
+}
+
+/* ========== Reveal Animation ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .value-grid { grid-template-columns: 1fr; }
+  .hero-landing { padding-top: 80px; padding-bottom: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== L02 Hero Center — 极简冲击 ====== -->
+<header class="hero-landing reveal">
+  <div class="deco-num">01</div>
+  <span class="label">免费线上活动</span>
+  <h1>用 Cola 做<br><span class="underline-hand">个人品牌</span></h1>
+  <p class="subtitle">一套规范文件，让 AI 每次输出都像你亲手做的。不需要学代码，像聊天一样就行。</p>
+  <a href="#register" class="cta-landing">立即报名 →</a>
+</header>
+
+<!-- ====== L06 Dark Panel — 打破节奏 ⚡ ====== -->
+<section class="dark-panel-landing reveal">
+  <h2>为什么需要设计系统？</h2>
+  <p>AI 每次输出的风格都不一样，看起来像是"很多人做的"。一套规范文件，让 AI 学会你的审美标准，然后按你的标准稳定输出。</p>
+</section>
+
+<!-- ====== L04 Card Grid — 信息概览 ====== -->
+<section class="value-grid reveal">
+  <div class="value-card">
+    <div class="icon">🎨</div>
+    <h3>统一风格</h3>
+    <p>颜色、字体、布局全部按品牌 DNA 来，每次输出都像一个人做的</p>
+  </div>
+  <div class="value-card">
+    <div class="icon">⚡</div>
+    <h3>效率翻倍</h3>
+    <p>一句话生成网页，一键导出图文卡片，设计不再拖后腿</p>
+  </div>
+  <div class="value-card">
+    <div class="icon">✨</div>
+    <h3>品质稳定</h3>
+    <p>P0 检查清单逐条过关，交付前自动把关，不"差不多"</p>
+  </div>
+</section>
+
+<!-- ====== L10 Brand Panel — 结尾收束 ====== -->
+<section class="brand-panel-landing reveal" id="register">
+  <h2>准备好开始了吗？</h2>
+  <p>跟 Cola 说"帮我做一个活动页面"，马上开始。</p>
+  <a href="#" class="btn-white">开始创建 →</a>
+</section>
+
+<!-- ====== Brand Footer ====== -->
+<footer class="brand-footer-landing reveal">
+  <img class="avatar" src="avatar.jpg" alt="Dr. Moon" onerror="this.style.display='none'">
+  <div>
+    <div class="name">Dr. Moon</div>
+    <div class="sub">MOON · 明月</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

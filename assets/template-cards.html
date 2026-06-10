@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>MOON明月 · 小红书图文卡片</title>
+<style>
+/* ========== Reset & Base ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #EFEAE2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', -apple-system, sans-serif;
+}
+
+.card {
+  width: 1080px; height: 1440px;
+  background: #F4F1ED;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========== Card Variants ========== */
+
+/* P1: Cover — Brand Color Full Background */
+.card-cover {
+  background: #bc4528;
+  color: #F4F1ED;
+  align-items: center;
+  text-align: center;
+  padding: 120px 80px;
+}
+.card-cover .cover-label {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 8px 24px;
+  border: 2px solid rgba(244,241,237,0.3);
+  border-radius: 6px;
+  margin-bottom: 48px;
+  color: #F4F1ED;
+}
+.card-cover h1 {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 88px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 32px;
+  color: #F4F1ED;
+}
+.card-cover .cover-subtitle {
+  font-size: 38px;
+  line-height: 1.7;
+  opacity: 0.85;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+.card-cover .cover-cta {
+  font-size: 34px;
+  font-weight: 600;
+  padding: 16px 40px;
+  background: #F4F1ED;
+  color: #bc4528;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* P2-P8: Content Cards */
+.card-content { padding: 88px 96px; justify-content: flex-start; }
+
+/* Style A: Big Number Step */
+.card-style-a .card-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 160px;
+  font-weight: 200;
+  color: rgba(188,69,40,0.12);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.card-style-a .card-num-line {
+  width: 80px; height: 3px;
+  background: #bc4528; margin-bottom: 32px;
+}
+.card-style-a .card-title {
+  font-size: 54px; font-weight: 900; color: #5D4E47; margin-bottom: 24px;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+}
+.card-style-a .card-desc {
+  font-size: 36px; color: #8A8178; line-height: 1.8; max-width: 720px;
+}
+
+/* Style B: Dark Panel */
+.card-style-b {
+  background: #3D342F;
+  color: #F4F1ED;
+  padding: 100px 96px;
+}
+.card-style-b .card-title { font-size: 54px; font-weight: 900; color: #E8C4B0; margin-bottom: 32px; }
+.card-style-b .code-box {
+  background: rgba(0,0,0,0.25);
+  border-radius: 16px;
+  padding: 36px 40px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 32px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+.card-style-b .tip {
+  font-size: 30px; color: #E8C4B0; display: flex; align-items: center; gap: 12px;
+}
+
+/* Style C: Quote Block */
+.card-style-c { justify-content: center; align-items: center; text-align: center; }
+.card-style-c .quote-mark {
+  font-family: Georgia, serif;
+  font-size: 160px;
+  color: rgba(188,69,40,0.2);
+  line-height: 0.5;
+  margin-bottom: 48px;
+}
+.card-style-c .quote-text {
+  font-size: 48px;
+  color: #5D4E47;
+  line-height: 1.7;
+  max-width: 780px;
+  font-weight: 500;
+}
+.card-style-c .quote-from {
+  font-size: 30px;
+  color: #8A8178;
+  margin-top: 40px;
+}
+
+/* Style D: Compare Split */
+.card-style-d { flex-direction: row; padding: 0; }
+.card-style-d .split-half {
+  flex: 1;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+}
+.card-style-d .split-half:first-child { background: #EFEAE2; }
+.card-style-d .split-label {
+  font-size: 28px; font-weight: 700; margin-bottom: 24px;
+  letter-spacing: 0.06em;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+}
+.card-style-d .split-label.good { color: #bc4528; }
+.card-style-d .split-label.bad { color: #8A8178; }
+.card-style-d .split-item {
+  font-size: 34px; color: #5D4E47; line-height: 2;
+  padding-left: 32px; position: relative;
+}
+.card-style-d .split-half:first-child .split-item::before {
+  content: '✓'; position: absolute; left: 0; color: #bc4528; font-weight: 700;
+}
+.card-style-d .split-half:last-child .split-item::before {
+  content: '✗'; position: absolute; left: 0; color: #8A8178;
+}
+
+/* Style E: Icon + Text List */
+.card-style-e .list-item {
+  display: flex; align-items: flex-start; gap: 28px; margin-bottom: 36px;
+}
+.card-style-e .list-icon {
+  font-size: 44px; flex-shrink: 0; width: 64px; text-align: center;
+}
+.card-style-e .list-title { font-size: 40px; font-weight: 700; color: #5D4E47; margin-bottom: 8px; }
+.card-style-e .list-desc { font-size: 32px; color: #8A8178; line-height: 1.6; }
+
+/* Style F: Screenshot Frame */
+.card-style-f .screen-box {
+  background: #EFEAE2; border-radius: 16px; padding: 28px;
+  box-shadow: 0 4px 20px rgba(93,78,71,0.06);
+  margin-bottom: 24px;
+}
+.card-style-f .screen-box img { width: 100%; border-radius: 8px; display: block; }
+.card-style-f .screen-cap { font-size: 28px; color: #8A8178; text-align: center; }
+
+/* Style G: Mini Card Grid (2x2) */
+.card-style-g .mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  max-width: 800px;
+}
+.card-style-g .mini-card {
+  background: #EFEAE2;
+  border-radius: 12px;
+  padding: 36px 32px;
+  border-left: 3px solid #bc4528;
+}
+.card-style-g .mini-card h4 {
+  font-size: 34px; font-weight: 700; color: #bc4528; margin-bottom: 12px;
+}
+.card-style-g .mini-card p {
+  font-size: 28px; color: #5D4E47; line-height: 1.6;
+}
+
+/* Style H: Timeline Flow */
+.card-style-h .tl-flow {
+  display: flex; flex-direction: column;
+  gap: 32px;
+  padding-left: 56px;
+  position: relative;
+}
+.card-style-h .tl-flow::before {
+  content: '';
+  position: absolute; left: 16px; top: 24px; bottom: 24px;
+  width: 3px;
+  border-left: 3px dashed #E8C4B0;
+}
+.card-style-h .tl-step {
+  position: relative;
+  font-size: 36px; color: #5D4E47; line-height: 1.7;
+}
+.card-style-h .tl-step::before {
+  content: '';
+  position: absolute; left: -48px; top: 12px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #bc4528;
+}
+
+/* ========== Last Card: Sign-off ========== */
+.card-signoff {
+  background: #bc4528;
+  color: #F4F1ED;
+  align-items: center;
+  text-align: center;
+  padding: 120px 80px;
+  justify-content: center;
+}
+.card-signoff .sign-title {
+  font-size: 54px; font-weight: 900; margin-bottom: 40px;
+}
+.card-signoff .sign-tags {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;
+}
+.card-signoff .sign-tag {
+  font-size: 28px; padding: 10px 28px;
+  background: rgba(244,241,237,0.12);
+  border-radius: 8px;
+}
+.card-signoff .sign-cta {
+  font-size: 36px; opacity: 0.85;
+}
+
+/* ========== Brand Corner ========== */
+.brand-corner {
+  position: absolute; right: 64px; bottom: 56px;
+  display: flex; align-items: center; gap: 14px;
+}
+.brand-corner .avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid rgba(244,241,237,0.3);
+}
+.brand-corner .brand-name {
+  font-size: 24px; font-weight: 600; color: #5D4E47;
+}
+.brand-corner .brand-sub {
+  font-size: 20px; color: #8A8178; display: block;
+}
+.card-cover .brand-corner .brand-name,
+.card-cover .brand-corner .brand-sub,
+.card-signoff .brand-corner .brand-name,
+.card-signoff .brand-corner .brand-sub { color: #F4F1ED; }
+.card-cover .brand-corner .brand-sub,
+.card-signoff .brand-corner .brand-sub { opacity: 0.6; }
+
+/* ========== Card Title (used in non-special layouts) ========== */
+.card-title-main {
+  font-size: 54px; font-weight: 900; color: #5D4E47; margin-bottom: 48px;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+}
+
+/* ========== Base Card ========== */
+.card-title-main {
+  font-size: 54px; font-weight: 900; color: #5D4E47; margin-bottom: 48px;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<!-- P1: Cover -->
+<div class="card card-cover">
+  <span class="cover-label">AI 效率 · 0代码基础</span>
+  <h1>用 Cola 做<br>个人品牌</h1>
+  <p class="cover-subtitle">像跟朋友聊天一样描述<br>自动生成风格统一的页面和图文</p>
+  <span class="cover-cta">开始探索 →</span>
+  <div class="brand-corner">
+    <img class="avatar" src="avatar.jpg" alt="Dr. Moon" onerror="this.style.display='none'">
+    <div>
+      <span class="brand-name">Dr. Moon</span>
+      <span class="brand-sub">MOON · 明月</span>
+    </div>
+  </div>
+</div>
+
+<!-- P2: Content — Big Number Step -->
+<div class="card card-content card-style-a">
+  <div class="card-num">01</div>
+  <div class="card-num-line"></div>
+  <div class="card-title">像聊天一样描述需求</div>
+  <div class="card-desc">别让工具成为门槛。你只需要告诉 Cola 你想做什么——做个教程页面、拆个知识卡片、还是做张社群海报。</div>
+  <div class="brand-corner">
+    <span class="brand-name">MOON · 明月</span>
+    <span class="brand-sub" style="display:block;">Dr. Moon</span>
+  </div>
+</div>
+
+<!-- P3: Content — Dark Panel -->
+<div class="card card-content card-style-b">
+  <div class="card-title">Cola 会自动匹配品牌规范</div>
+  <div class="code-box">
+    颜色 · 字体 · 布局 · 组件<br>
+    全部按你的品牌DNA来
+  </div>
+  <div class="tip">💡 不需要手动调色、不需要记规范</div>
+  <div class="brand-corner">
+    <span class="brand-name" style="color:#F4F1ED;">MOON · 明月</span>
+  </div>
+</div>
+
+<!-- P4: Content — Quote -->
+<div class="card card-content card-style-c">
+  <div class="quote-mark">"</div>
+  <div class="quote-text">最好的个人品牌不是设计出来的，是你分享知识时自然长出来的。</div>
+  <div class="quote-from">—— MOON明月</div>
+</div>
+
+<!-- P5: Content — Icon List -->
+<div class="card card-content card-style-e">
+  <div class="card-title-main">你的品牌系统里有什么</div>
+  <div class="list-item">
+    <span class="list-icon">🎨</span>
+    <div>
+      <div class="list-title">颜色 · 字体 · 视觉规范</div>
+      <div class="list-desc">陶土橙+宣纸白+暖棕，一套就够</div>
+    </div>
+  </div>
+  <div class="list-item">
+    <span class="list-icon">📐</span>
+    <div>
+      <div class="list-title">12种布局 + 12个组件</div>
+      <div class="list-desc">每次输出风格一致，但绝不重复</div>
+    </div>
+  </div>
+  <div class="list-item">
+    <span class="list-icon">✅</span>
+    <div>
+      <div class="list-title">自动质量检查</div>
+      <div class="list-desc">交付前逐条过关，保证品质</div>
+    </div>
+  </div>
+  <div class="brand-corner">
+    <span class="brand-name">MOON · 明月</span>
+  </div>
+</div>
+
+<!-- P6: Sign-off -->
+<div class="card card-signoff">
+  <div class="sign-title">这只是一套规范文件</div>
+  <div class="sign-tags">
+    <span class="sign-tag">Markdown</span>
+    <span class="sign-tag">HTML</span>
+    <span class="sign-tag">CSS</span>
+  </div>
+  <p class="sign-cta">放进 Cola 就能用</p>
+  <div class="brand-corner">
+    <img class="avatar" src="avatar.jpg" alt="Dr. Moon" onerror="this.style.display='none'">
+    <div>
+      <span class="brand-name">Dr. Moon</span>
+      <span class="brand-sub">MOON · 明月</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

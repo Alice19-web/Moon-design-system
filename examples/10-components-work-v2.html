@@ -1,0 +1,900 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10个新增组件预览 · 工作总结版 · MOON明月</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5D4E47;
+  background-color: #F4F1ED;
+  background-image: radial-gradient(rgba(93,78,71,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  padding: 60px 24px;
+}
+.page-title {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: #5D4E47;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.page-subtitle {
+  text-align: center;
+  color: #8A8178;
+  font-size: 0.95rem;
+  margin-bottom: 60px;
+}
+.component-section {
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+.component-label {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(188,69,40,0.15);
+}
+.component-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 200;
+  color: rgba(188,69,40,0.2);
+  line-height: 1;
+}
+.component-name {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5D4E47;
+}
+.component-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  margin-left: auto;
+  font-weight: 400;
+}
+
+/* ========== 1. 工作总结卡片 ========== */
+.summary-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 36px 32px;
+  max-width: 600px;
+  border-left: 4px solid #bc4528;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(93, 78, 71, 0.08);
+}
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.summary-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5D4E47;
+}
+.summary-date {
+  font-size: 0.75rem;
+  color: #8A8178;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  letter-spacing: 0.05em;
+}
+.summary-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(93, 78, 71, 0.08);
+}
+.summary-stat {
+  text-align: center;
+}
+.summary-stat-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #bc4528;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.summary-stat-label {
+  font-size: 0.75rem;
+  color: #8A8178;
+}
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.summary-list li {
+  font-size: 0.9rem;
+  color: #5D4E47;
+  line-height: 2;
+  padding-left: 20px;
+  position: relative;
+}
+.summary-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #bc4528;
+  font-weight: 700;
+}
+
+/* ========== 2. 要点提炼卡 ========== */
+.takeaway-card {
+  background: #3D342F;
+  border-radius: 14px;
+  padding: 40px 36px;
+  max-width: 560px;
+  position: relative;
+  overflow: hidden;
+}
+.takeaway-card::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(188, 69, 40, 0.08);
+  border-radius: 50%;
+}
+.takeaway-num {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 4rem;
+  font-weight: 200;
+  color: rgba(188, 69, 40, 0.2);
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative;
+}
+.takeaway-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #E8C4B0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+}
+.takeaway-text {
+  font-size: 1.15rem;
+  color: #F4F1ED;
+  line-height: 1.8;
+  font-weight: 500;
+  position: relative;
+}
+
+/* ========== 3. Before/After 对比卡 ========== */
+.compare-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 600px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(93, 78, 71, 0.06);
+}
+.compare-before, .compare-after {
+  padding: 32px 28px;
+}
+.compare-before {
+  background: #EFEAE2;
+}
+.compare-after {
+  background: #FAF7F2;
+  border-left: 3px solid #bc4528;
+}
+.compare-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.compare-before .compare-label { color: #8A8178; }
+.compare-after .compare-label { color: #bc4528; }
+.compare-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 12px;
+}
+.compare-desc {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0;
+}
+.compare-arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  background: #bc4528;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F4F1ED;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(188, 69, 40, 0.3);
+}
+
+/* ========== 4. Checklist 清单组件 ========== */
+.checklist {
+  max-width: 600px;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #FAF7F2;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.checklist-item:hover {
+  background: #EFEAE2;
+}
+.checklist-item.completed .checklist-text {
+  text-decoration: line-through;
+  color: #8A8178;
+  opacity: 0.7;
+}
+.checklist-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid #bc4528;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.checklist-item.completed .checklist-box {
+  background: #bc4528;
+  border-color: #bc4528;
+}
+.checklist-box::after {
+  content: '✓';
+  font-size: 0.7rem;
+  color: #F4F1ED;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.checklist-item.completed .checklist-box::after {
+  opacity: 1;
+}
+.checklist-text {
+  font-size: 0.95rem;
+  color: #5D4E47;
+  line-height: 1.6;
+  transition: all 0.2s;
+}
+
+/* ========== 5. 工具推荐卡片 ========== */
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 600px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(93, 78, 71, 0.04);
+}
+.tool-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(93, 78, 71, 0.06);
+}
+.tool-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #EFEAE2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.tool-card:hover .tool-icon {
+  background: rgba(188, 69, 40, 0.1);
+}
+.tool-body {
+  flex: 1;
+}
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.tool-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #5D4E47;
+}
+.tool-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.tool-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.tool-link {
+  font-size: 0.8rem;
+  color: #bc4528;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ========== 6. 读书笔记卡片 ========== */
+.reading-card {
+  background: #FAF7F2;
+  border-radius: 0 14px 14px 0;
+  padding: 32px 28px 32px 32px;
+  max-width: 560px;
+  border-left: 4px solid #bc4528;
+  position: relative;
+  transition: transform 0.2s;
+}
+.reading-card:hover {
+  transform: translateY(-3px);
+}
+.reading-book {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(93, 78, 71, 0.08);
+}
+.reading-book-icon {
+  font-size: 2rem;
+}
+.reading-book-info h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 2px;
+}
+.reading-book-info span {
+  font-size: 0.75rem;
+  color: #8A8178;
+}
+.reading-quote {
+  font-size: 1rem;
+  color: #5D4E47;
+  line-height: 1.9;
+  font-style: normal;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 2px solid #E8C4B0;
+}
+.reading-thought {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0;
+}
+.reading-thought::before {
+  content: '💡 ';
+}
+
+/* ========== 7. 数据洞察块 ========== */
+.insight-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 32px 28px;
+  max-width: 600px;
+  border-top: 3px solid #bc4528;
+}
+.insight-number {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #bc4528;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 80px;
+  text-align: center;
+}
+.insight-unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #8A8178;
+}
+.insight-body h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 8px;
+}
+.insight-body p {
+  font-size: 0.9rem;
+  color: #8A8178;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ========== 8. 项目案例卡片 ========== */
+.case-card {
+  background: #FAF7F2;
+  border-radius: 14px;
+  padding: 32px 28px;
+  max-width: 600px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(93, 78, 71, 0.04);
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(93, 78, 71, 0.08);
+}
+.case-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+.case-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 20px;
+}
+.case-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.case-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.case-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bc4528;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.case-step-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #bc4528;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.case-step-text {
+  font-size: 0.9rem;
+  color: #5D4E47;
+  line-height: 1.6;
+}
+
+/* ========== 9. 方法框架图 ========== */
+.framework-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 500px;
+}
+.framework-cell {
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.framework-cell:hover {
+  border-color: #bc4528;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(93, 78, 71, 0.06);
+}
+.framework-cell .fc-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #bc4528;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.framework-cell .fc-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 8px;
+}
+.framework-cell .fc-desc {
+  font-size: 0.85rem;
+  color: #8A8178;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========== 10. 时间日志卡片 ========== */
+.log-card {
+  max-width: 600px;
+}
+.log-date {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #bc4528;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.log-date::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(188, 69, 40, 0.15);
+}
+.log-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #FAF7F2;
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: background 0.2s;
+}
+.log-item:hover {
+  background: #EFEAE2;
+}
+.log-time {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8A8178;
+  flex-shrink: 0;
+  min-width: 50px;
+  padding-top: 2px;
+}
+.log-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #5D4E47;
+  margin-bottom: 4px;
+}
+.log-content p {
+  font-size: 0.85rem;
+  color: #8A8178;
+  line-height: 1.6;
+  margin: 0;
+}
+.log-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #bc4528;
+  background: rgba(188, 69, 40, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .compare-card { grid-template-columns: 1fr; }
+  .framework-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<h1 class="page-title">10个新增组件预览</h1>
+<p class="page-subtitle">工作总结 · 知识分享 · 个人品牌 · MOON明月</p>
+
+<!-- ====== 1. 工作总结卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">01</span>
+    <span class="component-name">工作总结卡片</span>
+    <span class="component-desc">月度/季度复盘</span>
+  </div>
+  <div class="summary-card">
+    <div class="summary-header">
+      <span class="summary-title">6月工作复盘</span>
+      <span class="summary-date">2026.06.01 — 06.30</span>
+    </div>
+    <div class="summary-stats">
+      <div class="summary-stat">
+        <div class="summary-stat-num">12</div>
+        <div class="summary-stat-label">完成项目</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-stat-num">8</div>
+        <div class="summary-stat-label">输出文章</div>
+      </div>
+      <div class="summary-stat">
+        <div class="summary-stat-num">3</div>
+        <div class="summary-stat-label">新工具</div>
+      </div>
+    </div>
+    <ul class="summary-list">
+      <li>完成品牌升级项目，统一了全平台视觉</li>
+      <li>输出《认知设计》系列文章，阅读量破万</li>
+      <li>尝试了AI辅助设计流程，效率提升40%</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ====== 2. 要点提炼卡 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">02</span>
+    <span class="component-name">要点提炼卡</span>
+    <span class="component-desc">核心观点/金句卡片</span>
+  </div>
+  <div class="takeaway-card">
+    <div class="takeaway-num">03</div>
+    <div class="takeaway-label">本月核心洞察</div>
+    <div class="takeaway-text">限制不是束缚，而是让每次输出都有底线的自由。设计系统的本质，是把审美判断力写成可执行的规则。</div>
+  </div>
+</div>
+
+<!-- ====== 3. Before/After 对比卡 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">03</span>
+    <span class="component-name">Before/After 对比卡</span>
+    <span class="component-desc">改进前后对比</span>
+  </div>
+  <div style="position: relative; max-width: 600px;">
+    <div class="compare-card">
+      <div class="compare-before">
+        <div class="compare-label">Before</div>
+        <div class="compare-title">设计输出不稳定</div>
+        <div class="compare-desc">每次做图风格都不一样，看起来像是很多人做的，没有统一的品牌感。</div>
+      </div>
+      <div class="compare-after">
+        <div class="compare-label">After</div>
+        <div class="compare-title">建立设计系统</div>
+        <div class="compare-desc">一套规范文件约束颜色、字体、布局，每次输出都像同一个人做的。</div>
+      </div>
+    </div>
+    <div class="compare-arrow">→</div>
+  </div>
+</div>
+
+<!-- ====== 4. Checklist 清单组件 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">04</span>
+    <span class="component-name">Checklist 清单</span>
+    <span class="component-desc">待办/完成事项</span>
+  </div>
+  <div class="checklist">
+    <div class="checklist-item completed">
+      <div class="checklist-box"></div>
+      <div class="checklist-text">整理品牌色彩规范文档</div>
+    </div>
+    <div class="checklist-item completed">
+      <div class="checklist-box"></div>
+      <div class="checklist-text">输出《认知设计》系列文章</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-box"></div>
+      <div class="checklist-text">优化个人网站移动端适配</div>
+    </div>
+    <div class="checklist-item">
+      <div class="checklist-box"></div>
+      <div class="checklist-text">整理上半年工作方法论</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 5. 工具推荐卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">05</span>
+    <span class="component-name">工具推荐卡片</span>
+    <span class="component-desc">软件/工具/资源推荐</span>
+  </div>
+  <div class="tool-card">
+    <div class="tool-icon">🎨</div>
+    <div class="tool-body">
+      <div class="tool-header">
+        <span class="tool-name">Figma</span>
+        <span class="tool-tag">设计协作</span>
+      </div>
+      <div class="tool-desc">团队协作设计的首选，组件库功能让品牌一致性变得简单。</div>
+      <a href="#" class="tool-link">figma.com →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 6. 读书笔记卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">06</span>
+    <span class="component-name">读书笔记卡片</span>
+    <span class="component-desc">书摘+个人感悟</span>
+  </div>
+  <div class="reading-card">
+    <div class="reading-book">
+      <span class="reading-book-icon">📖</span>
+      <div class="reading-book-info">
+        <h4>《设计心理学》</h4>
+        <span>唐纳德·诺曼 · 1988</span>
+      </div>
+    </div>
+    <div class="reading-quote">好的设计是 invisible 的，用户甚至不会注意到它的存在。</div>
+    <div class="reading-thought">做品牌设计也是如此——最好的品牌不是让人惊叹"这设计真好看"，而是让人自然信任"这就是它"。</div>
+  </div>
+</div>
+
+<!-- ====== 7. 数据洞察块 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">07</span>
+    <span class="component-name">数据洞察块</span>
+    <span class="component-desc">轻量数据+解读</span>
+  </div>
+  <div class="insight-block">
+    <div class="insight-number">40<span class="insight-unit">%</span></div>
+    <div class="insight-body">
+      <h4>效率提升</h4>
+      <p>引入AI辅助设计流程后，方案产出时间从5天缩短到3天，且品质更稳定。核心优化点在重复性排版和素材生成环节。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 8. 项目案例卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">08</span>
+    <span class="component-name">项目案例卡片</span>
+    <span class="component-desc">问题→解决→结果</span>
+  </div>
+  <div class="case-card">
+    <span class="case-tag">品牌升级</span>
+    <div class="case-title">MOON明月 个人品牌视觉升级</div>
+    <div class="case-flow">
+      <div class="case-step">
+        <div class="case-step-dot"></div>
+        <div>
+          <div class="case-step-label">问题</div>
+          <div class="case-step-text">各平台输出风格不统一，看起来像多人做的</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-dot"></div>
+        <div>
+          <div class="case-step-label">解决</div>
+          <div class="case-step-text">建立品牌设计系统，约束颜色、字体、布局、组件</div>
+        </div>
+      </div>
+      <div class="case-step">
+        <div class="case-step-dot"></div>
+        <div>
+          <div class="case-step-label">结果</div>
+          <div class="case-step-text">输出一致性提升90%，设计决策时间减少50%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 9. 方法框架图 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">09</span>
+    <span class="component-name">方法框架图</span>
+    <span class="component-desc">2×2 矩阵/简单框架</span>
+  </div>
+  <div class="framework-grid">
+    <div class="framework-cell">
+      <div class="fc-label">重要 + 紧急</div>
+      <div class="fc-title">立即做</div>
+      <div class="fc-desc">品牌核心视觉规范</div>
+    </div>
+    <div class="framework-cell">
+      <div class="fc-label">重要 + 不紧急</div>
+      <div class="fc-title">计划做</div>
+      <div class="fc-desc">长期内容策略规划</div>
+    </div>
+    <div class="framework-cell">
+      <div class="fc-label">不重要 + 紧急</div>
+      <div class="fc-title">委托做</div>
+      <div class="fc-desc">日常素材批量处理</div>
+    </div>
+    <div class="framework-cell">
+      <div class="fc-label">不重要 + 不紧急</div>
+      <div class="fc-title">少做</div>
+      <div class="fc-desc">过度装饰和微调</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 10. 时间日志卡片 ====== -->
+<div class="component-section">
+  <div class="component-label">
+    <span class="component-num">10</span>
+    <span class="component-name">时间日志卡片</span>
+    <span class="component-desc">某天/某周工作记录</span>
+  </div>
+  <div class="log-card">
+    <div class="log-date">2026.06.06 · 周五</div>
+    <div class="log-items">
+      <div class="log-item">
+        <div class="log-time">09:00</div>
+        <div class="log-content">
+          <h4>整理品牌设计系统文档</h4>
+          <p>优化了色彩比例规范和反AI味检验清单</p>
+          <span class="log-tag">方法论</span>
+        </div>
+      </div>
+      <div class="log-item">
+        <div class="log-time">14:00</div>
+        <div class="log-content">
+          <h4>测试网页生成效果</h4>
+          <p>用品牌设计方法论文档生成10个section的教程页</p>
+          <span class="log-tag">实践</span>
+        </div>
+      </div>
+      <div class="log-item">
+        <div class="log-time">20:00</div>
+        <div class="log-content">
+          <h4>复盘组件库扩展方向</h4>
+          <p>从课程导向转向工作总结导向，更符合日常使用</p>
+          <span class="log-tag">复盘</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

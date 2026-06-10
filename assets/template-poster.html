@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>MOON明月 · 海报</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.poster {
+  width: 1080px; height: 1440px;
+  background: #F4F1ED;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', -apple-system, sans-serif;
+  margin: 0 auto 32px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
+
+/* ===== Mode A: Vertical Stack ===== */
+.poster-stack {
+  text-align: center;
+  align-items: center;
+  padding: 80px;
+}
+.poster-stack .label {
+  display: inline-block;
+  font-size: 26px; font-weight: 600; letter-spacing: 0.08em;
+  color: #bc4528;
+  padding: 8px 24px; border: 2px solid rgba(188,69,40,0.2); border-radius: 6px;
+  margin-bottom: 40px;
+}
+.poster-stack h1 {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 96px; font-weight: 900; line-height: 1.2;
+  color: #5D4E47; margin-bottom: 24px;
+}
+.poster-stack .subtitle {
+  font-size: 38px; color: #8A8178; line-height: 1.6; max-width: 620px;
+}
+.poster-stack .cta {
+  display: inline-block; margin-top: 56px;
+  padding: 18px 44px; background: #bc4528;
+  color: #F4F1ED; font-size: 34px; font-weight: 600;
+  border-radius: 12px;
+}
+
+/* ===== Mode B: Split (image + text) ===== */
+.poster-split {
+  flex-direction: row;
+  padding: 0;
+}
+.poster-split .split-text {
+  width: 55%;
+  padding: 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.poster-split .split-visual {
+  width: 45%;
+  background: rgba(188,69,40,0.05);
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px;
+  font-size: 180px;
+}
+.poster-split .split-label {
+  font-size: 26px; font-weight: 600; letter-spacing: 0.08em;
+  color: #bc4528; margin-bottom: 36px;
+}
+.poster-split h1 {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 84px; font-weight: 900; line-height: 1.25;
+  color: #5D4E47; margin-bottom: 20px;
+}
+.poster-split .split-sub {
+  font-size: 34px; color: #8A8178; line-height: 1.7; margin-bottom: 40px;
+}
+.poster-split .split-cta {
+  display: inline-block;
+  padding: 16px 36px; background: #bc4528;
+  color: #F4F1ED; font-size: 32px; font-weight: 600;
+  border-radius: 10px;
+}
+
+/* ===== Mode C: Center Impact ===== */
+.poster-center {
+  text-align: center; align-items: center; padding: 100px 80px;
+  background: linear-gradient(180deg, #bc4528 0%, #bc4528 100%);
+  color: #F4F1ED;
+}
+.poster-center h1 {
+  font-family: 'Arial Unicode MS', 'Arial Unicode', 'Noto Sans SC', sans-serif;
+  font-size: 112px; font-weight: 900; line-height: 1.15;
+  color: #F4F1ED; margin-bottom: 32px;
+}
+.poster-center .subtitle {
+  font-size: 42px; opacity: 0.85; line-height: 1.7; max-width: 640px;
+}
+.poster-center .cta {
+  display: inline-block; margin-top: 56px;
+  padding: 18px 48px; background: #F4F1ED;
+  color: #bc4528; font-size: 36px; font-weight: 700;
+  border-radius: 12px;
+}
+
+/* ===== Common Elements ===== */
+.brand-sign {
+  position: absolute; bottom: 56px; left: 72px;
+  display: flex; align-items: center; gap: 14px;
+}
+.brand-sign .avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid rgba(188,69,40,0.2);
+}
+.brand-sign .name {
+  font-size: 26px; font-weight: 600; color: #5D4E47;
+}
+.brand-sign .sub {
+  font-size: 22px; color: #8A8178; display: block;
+}
+.poster-center .brand-sign .name,
+.poster-center .brand-sign .sub { color: #F4F1ED; }
+.poster-center .brand-sign .sub { opacity: 0.6; }
+
+.underline-hand {
+  position: relative; display: inline-block;
+}
+.underline-hand::after {
+  content: ''; position: absolute; left: -4px; right: -4px; bottom: -6px; height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='14'%3E%3Cpath d='M3 10Q25 4 50 9T97 7' stroke='%23C65C3D' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+  background-size: auto 100%;
+}
+.poster-center .underline-hand::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='14'%3E%3Cpath d='M3 10Q25 4 50 9T97 7' stroke='%23F4F1ED' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+}
+</style>
+</head>
+<body>
+
+<!-- Demo A: Vertical Stack -->
+<div class="poster poster-stack">
+  <span class="label">免费线上分享</span>
+  <h1>用 Cola 做<br><span class="underline-hand">个人品牌</span></h1>
+  <p class="subtitle">一套规范文件，让 AI 每次输出<br>都像你亲手做的</p>
+  <span class="cta">扫码报名 →</span>
+  <div class="brand-sign">
+    <img class="avatar" src="avatar.jpg" alt="Dr. Moon" onerror="this.style.display='none'">
+    <div>
+      <span class="name">Dr. Moon</span>
+      <span class="sub">MOON · 明月</span>
+    </div>
+  </div>
+</div>
+
+<!-- Demo B: Split Layout -->
+<div class="poster poster-split">
+  <div class="split-text">
+    <div class="split-label">AI · 设计 · 效率</div>
+    <h1>让每个职场人<br>都能轻松做设计</h1>
+    <p class="split-sub">不需要学任何新工具，像跟朋友聊天一样描述就行。</p>
+    <span class="split-cta">了解更多 →</span>
+  </div>
+  <div class="split-visual">
+    ✦
+  </div>
+  <div class="brand-sign">
+    <span class="name">MOON · 明月</span>
+  </div>
+</div>
+
+<!-- Demo C: Center Impact -->
+<div class="poster poster-center">
+  <h1>你也能做到</h1>
+  <p class="subtitle">把知识做成好看的东西<br>让人愿意看下去</p>
+  <span class="cta">马上开始 →</span>
+  <div class="brand-sign">
+    <span class="name">MOON · 明月</span>
+    <span class="sub">Dr. Moon</span>
+  </div>
+</div>
+
+</body>
+</html>
